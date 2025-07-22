@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="period">.</string>
+    <string name="hide">Hide</string>
+    <string name="space"> </string>
+    <string name="password_rules_1">At least 8 characters</string>
+    <string name="password_rules_2">Must include both uppercase and lowercase letters</string>
+    <string name="password_rules_3">Must contain at least one numeric character (0-9)</string>
+    <string name="password_rules_4"><![CDATA[Must contain at least one special character (e.g., !@#$%^&*)]]></string>
+    <string name="password_below_minimum_format">Password must be at least %1$d characters</string>
+    <string name="password_exceeds_maximum_format">Password must not exceed %1$d characters</string>
+    <string name="password_is_empty">Password is empty</string>
+    <string name="no_internet_connection_error">Please check your internet connection</string>
+    <string name="email_address_label">Email Address</string>
+    <string name="email_address_value">example@address.com.au</string>
+    <string name="password_label">Password</string>
+    <string name="settings_icon_description">Settings Icon</string>
+    <string name="arrow_icon_description">Arrow Icon</string>
+    <string name="back">Back</string>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="report_problem">Report a Problem</string>
+    <string name="subject">Subject</string>
+    <string name="description">Description</string>
+    <string name="hide">Hide</string>
+    <string name="add_image">Add Image</string>
+    <string name="remove_image">Remove Image</string>
+    <string name="image_attachment">Image Attachment</string>
+    <string name="success_report_message">Report has been submitted</string>
+</resources>

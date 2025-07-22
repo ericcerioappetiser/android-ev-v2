@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="skip">Skip</string>
+    <string name="get_started">Get Started</string>
+    <string name="feature_01">Feature 01</string>
+    <string name="feature_02">Feature 02</string>
+    <string name="feature_03">Feature 03</string>
+    <string name="feature_01_desc">A brief description of a feature of the services this product offers to real users.</string>
+    <string name="feature_02_desc">A brief description of a feature of the services this product offers to real users.</string>
+    <string name="feature_03_desc">A brief description of a feature of the services this product offers to real users.</string>
+    <string name="next">Next</string>
+</resources>

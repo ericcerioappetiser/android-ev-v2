@@ -1,0 +1,152 @@
+image: ubuntu:latest
+
+stages:
+    - sanity
+    - test
+    - internal-release
+    - external-release
+
+variables:
+    ANDROID_SDK_ROOT: /opt/android
+    ANDROID_HOME: /opt/android
+    JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
+    CMDLINE_TOOLS: commandlinetools-linux-11076708_latest
+    BUILD_TOOLS: 34.0.0
+    PLATFORMS: android-34
+
+cache:
+    key: android-cache
+    paths:
+        - $ANDROID_SDK_ROOT
+        - ~/.gradle/wrapper
+        - ~/.gradle/caches
+        - $HOME/.rbenv
+        - vendor/bundle # Cache bundler gems
+
+# Reusable job template for setting up Android SDK
+.android_setup: &android_setup
+    # ✅ Download necessary packages
+    - apt-get update -qqy
+    - apt-get install -qqy openjdk-17-jdk
+    - apt-get install -qqy libssl-dev
+
+    # ✅ Setup JAVA HOME
+    - export JAVA_HOME=$JAVA_HOME
+    - export PATH="$JAVA_HOME/bin:$PATH"
+    - java -version
+
+    # ✅ Android SDK setup
+    - mkdir -p $ANDROID_SDK_ROOT && cd $ANDROID_SDK_ROOT
+    - wget https://dl.google.com/android/repository/$CMDLINE_TOOLS.zip
+    - unzip $CMDLINE_TOOLS.zip && rm $CMDLINE_TOOLS.zip
+    - yes | $ANDROID_SDK_ROOT/cmdline-tools/bin/sdkmanager --sdk_root=$ANDROID_SDK_ROOT --licenses || true
+    - $ANDROID_SDK_ROOT/cmdline-tools/bin/sdkmanager --sdk_root=$ANDROID_SDK_ROOT --update
+    - $ANDROID_SDK_ROOT/cmdline-tools/bin/sdkmanager --sdk_root=$ANDROID_SDK_ROOT "build-tools;$BUILD_TOOLS" "platforms;$PLATFORMS"
+    - cd $CI_PROJECT_DIR
+    - chmod +x gradlew
+
+# Reusable job template for fastlane setup
+.fastlane_setup: &fastlane_setup
+    # ✅ Download necessary packages
+    - apt-get update -qqy
+    - apt-get install -qqy --no-install-recommends ruby-full build-essential
+    - apt-get install -qqy autoconf patch build-essential rustc libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
+
+    # ✅ rbenv setup
+    - git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+    - ~/.rbenv/bin/rbenv init
+    - source ~/.bashrc
+    - git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+    - rbenv install -l
+    - rbenv install 3.3.1
+    - rbenv global 3.3.1
+
+    # ✅ Fastlane setup
+    - gem install bundler fastlane
+    - echo "export LC_ALL=en_US.UTF-8" >> ~/.bash_profile
+    - echo "export LANG=en_US.UTF-8" >> ~/.bash_profile
+    - source ~/.bash_profile
+    - bundle update fastlane
+    - bundle exec fastlane --version
+
+sanity check:
+    stage: sanity
+    script:
+        # Check for firebase credentials
+        - test -n "$FIREBASE_CREDENTIALS" || (echo "❌ Missing FIREBASE_CREDENTIALS!" && exit 1)
+        - mkdir -p fastlane && echo "$FIREBASE_CREDENTIALS" > fastlane/firebase_credentials.json
+        - test -s fastlane/firebase_credentials.json || (echo "❌ firebase_credentials.json is empty!" && exit 1)
+
+        # Check for google-services.json
+        - test -n "$GOOGLE_SERVICES" || (echo "❌ Missing GOOGLE_SERVICES!" && exit 1)
+        - mkdir -p app && echo "$GOOGLE_SERVICES" > app/google-services.json
+        - test -s app/google-services.json || (echo "❌ google-services.json is empty!" && exit 1)
+
+        # Check for secret.gradle.kts
+        - test -n "$SECRET_GRADLE_KTS" || (echo "❌ Missing SECRET_GRADLE_KTS!" && exit 1)
+        - echo "$SECRET_GRADLE_KTS" > secret.gradle.kts
+        - test -s secret.gradle.kts || (echo "❌ secret.gradle.kts is empty!" && exit 1)
+
+        # Check for variables
+        - test -n "$SLACK_URL" || (echo "❌ Missing SLACK_URL!" && exit 1)
+        - test -n "$FIREBASE_APP_ID" || (echo "❌ Missing FIREBASE_APP_ID!" && exit 1)
+        - test -n "$FIREBASE_APP_ID_DEV" || (echo "❌ Missing FIREBASE_APP_ID_DEV!" && exit 1)
+        - echo "✅ Sanity check passed!"
+    rules:
+        -   if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop"'
+            when: always
+        -   if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_COMMIT_BRANCH =~ /^release\/.*/'
+            when: always
+
+run tests:
+    stage: test
+    when: on_success
+    before_script:
+        - *android_setup
+    script:
+        - echo "$GOOGLE_SERVICES" | base64 -d > app/google-services.json
+        - echo "$SECRET_GRADLE_KTS" | base64 -d > secret.gradle.kts
+        - ./gradlew testDebugUnitTest --stacktrace
+    rules:
+        -   if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop"'
+            when: always
+        -   if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_COMMIT_BRANCH =~ /^release\/.*/'
+            when: always
+
+create staging build:
+    stage: internal-release
+    when: on_success
+    before_script:
+        - *android_setup
+        - *fastlane_setup
+    script:
+        - export BUILD_NUMBER=$CI_PIPELINE_ID
+        - export SLACK_URL=$(echo "$SLACK_URL" | base64 -d)
+        - export FIREBASE_APP_ID=$(echo "$FIREBASE_APP_ID_DEV" | base64 -d)
+        - echo "$GOOGLE_SERVICES" | base64 -d > app/google-services.json
+        - echo "$SECRET_GRADLE_KTS" | base64 -d > secret.gradle.kts
+        - echo "$FIREBASE_CREDENTIALS" | base64 -d > fastlane/firebase_credentials.json
+        - bundle exec fastlane internal_release
+    rules:
+        -   if: '$CI_COMMIT_BRANCH =~ /^release\/.*/'
+            when: always
+
+create release build:
+    stage: external-release
+    when: on_success
+    before_script:
+        - *android_setup
+        - *fastlane_setup
+    script:
+        - export BUILD_NUMBER=$CI_PIPELINE_ID
+        - export SLACK_URL=$(echo "$SLACK_URL" | base64 -d)
+        - export FIREBASE_APP_ID=$(echo "$FIREBASE_APP_ID" | base64 -d)
+        - echo "$GOOGLE_SERVICES" | base64 -d > app/google-services.json
+        - echo "$SECRET_GRADLE_KTS" | base64 -d > secret.gradle.kts
+        - echo "$FIREBASE_CREDENTIALS" | base64 -d > fastlane/firebase_credentials.json
+        - bundle exec fastlane external_release
+        # TODO integrate play store uploads
+    rules:
+        -   if: '$CI_COMMIT_BRANCH == "main" && $ENABLE_RELEASE_JOB =~ /(?i)^true$/'
+            when: always
+        -   when: never

@@ -1,0 +1,3 @@
+<resources>
+    <string name="intent_action_io_exception">com.appetiser.baseplate.IO_EXCEPTION</string>
+</resources>

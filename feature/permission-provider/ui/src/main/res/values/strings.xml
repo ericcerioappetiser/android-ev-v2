@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="permission_dialog_title">Permission Required</string>
+    <string name="permission_dialog_body">It looks like you’ve permanently denied required permission/s. To enable this feature, please open your device’s Settings, \n go to ‘Apps’ and grant require permission/s.</string>
+    <string name="app_settings">App Settings</string>
+    <string name="permissions_granted">Permission/s granted!</string>
+    <string name="permissions_denied">Permission/s denied!</string>
+    <string name="request_permissions">Request Permission/s</string>
+    <string name="request_again">Request Again</string>
+    <string name="call_a_friend">Call a Friend</string>
+    <string name="call">Call</string>
+    <string name="take_a_picture">Take a Picture</string>
+    <string name="take">Take</string>
+    <string name="permission_provider_sample">Permission Provider Sample</string>
+    <string name="denied_camera">Taking photo is disabled due to denied permission</string>
+    <string name="denied_call_phone">Calling is temporarily disabled due to denied permission</string>
+    <string name="permissions_should_be_called_in_the_context_of_an_activity">Permissions should be called in the context of an Activity</string>
+    <string name="proceed">Proceed</string>
+</resources>

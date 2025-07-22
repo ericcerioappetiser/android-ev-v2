@@ -1,0 +1,21 @@
+package com.appetiser.baseplate.common.util
+
+const val DEFAULT_DOB_SUBTRACTION = 18L
+
+const val PROFILE_PHOTO_MAX_DIMENSION_PX = 480
+
+const val PASSWORD_MIN_LENGTH = 8
+const val PASSWORD_MAX_LENGTH = 32
+
+const val COUNTDOWN_MAX_TIMER = 60L
+const val DEFAULT_DELAY_IN_MILLISECONDS = 1000L
+
+const val EXTRA_FROM_CHANGE_PHONE = "EXTRA_FROM_CHANGE_PHONE"
+const val EXTRA_FROM_CHANGE_EMAIL = "EXTRA_FROM_CHANGE_EMAIL"
+const val RECOMMEND_UPDATE_INTERVAL_IN_MILLIS = 86400000 // 24 hours in millis
+const val PROFILE_DESCRIPTION_MAX_LENGTH = 250
+const val NAV_ARGS_USER_ID = "userId"
+
+const val VERIFICATION_TOKEN_ARGS = "verificationToken"
+
+const val MIN_CODE_LENGTH = 5

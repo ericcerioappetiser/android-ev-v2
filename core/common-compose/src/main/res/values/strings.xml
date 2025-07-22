@@ -1,0 +1,27 @@
+<resources>
+
+    <string name="search">Search</string>
+    <string name="clear">Clear</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="hide">Hide</string>
+    <string name="background_color">Background Color</string>
+    <string name="title_color">Title Color</string>
+    <string name="description_color">Description Color</string>
+    <string name="stroke_color">Description Color</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="edit_profile_description">Edit Profile Description</string>
+    <string name="settings_icon_description">Settings Icon</string>
+    <string name="account_settings">Account Settings</string>
+    <string name="password">Password</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="chat">Chat</string>
+    <string name="notifications">Notifications</string>
+    <string name="new_string">New</string>
+    <string name="navigate_up">Navigate up</string>
+    <string name="take_picture">Take Picture</string>
+    <string name="photo_library">Photo Library</string>
+    <string name="back">Back</string>
+
+</resources>

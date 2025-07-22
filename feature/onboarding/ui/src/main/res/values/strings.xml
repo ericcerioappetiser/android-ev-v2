@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="welcome_to_app_name">Welcome to App name</string>
+    <string name="lets_add_your_complete_name">Let\'s add your complete name!</string>
+    <string name="please_enter_your_date_of_birth">Please enter your date of birth.</string>
+    <string name="continue_text">Continue</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="your_birthday">Your Birthday</string>
+    <string name="ok">ok</string>
+    <string name="your_profile">Your Profile</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="cancel">Cancel</string>
+    <string name="back">Back</string>
+    <string name="skip">Skip</string>
+    <string name="your_profile_description">Add a profile picture so others can identify who you are in the app</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="take_a_picture">Take a Picture</string>
+    <string name="photo_gallery">Photo Gallery</string>
+    <string name="image">image/*</string>
+    <string name="hide">Hide</string>
+    <string name="upload_successful">Upload Successful</string>
+    <string name="camera_permission_title">Camera Access</string>
+    <string name="camera_permission_message">This application requires access to your camera to upload your avatar.</string>
+
+</resources>
