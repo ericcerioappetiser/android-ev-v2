@@ -1,6 +1,6 @@
 package com.appetiser.feature.song.domain.models
 
-class Song(
+data class Song(
     val id: String,
     val title: String,
     val description: String,

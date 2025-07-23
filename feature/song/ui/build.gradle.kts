@@ -43,9 +43,9 @@ android {
 }
 
 dependencies {
-    implementation(project(":feature:song:data"))
-    implementation(project(":feature:song:network"))
-    implementation(project(":feature:song:domain"))
+    implementation(projects.feature.song.data)
+    implementation(projects.feature.song.network)
+    implementation(projects.feature.song.domain)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -53,9 +53,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation(project(":core:common-compose"))
+    implementation(projects.core.commonCompose)
     implementation(libs.androidx.compose.material3)
-    implementation(project(":core:common-android"))
+    implementation(projects.core.commonAndroid)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     debugImplementation(libs.androidx.compose.ui.tooling)
