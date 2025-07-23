@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="unfavorite">Unfavorite</string>
+    <string name="favorite">Favorite</string>
+    <string name="cover">%1$s cover</string>
+</resources>
