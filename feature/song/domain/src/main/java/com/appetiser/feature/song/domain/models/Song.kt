@@ -3,9 +3,11 @@ package com.appetiser.feature.song.domain.models
 data class Song(
     val id: String,
     val title: String,
-    val description: String,
-    val price: String,
+    val longDescription: String,
+    val shortDescription: String,
+    val price: Double,
     val artistName: String,
+    val artistUrl: String,
     val thumbnail: String,
     val videoUrl: String,
     val isFavorite: Boolean = false

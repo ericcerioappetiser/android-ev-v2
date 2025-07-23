@@ -56,8 +56,10 @@ fun FavoriteIconPreview() {
             id = "",
             title = "What it is to Burn",
             artistName = "Finch",
-            description = "Lorem ipsum",
-            price = "$100.00",
+            artistUrl = "",
+            longDescription = "Lorem ipsum",
+            shortDescription = "Lorem ipsum",
+            price = 100.00,
             thumbnail = "",
             videoUrl = ""
         ),

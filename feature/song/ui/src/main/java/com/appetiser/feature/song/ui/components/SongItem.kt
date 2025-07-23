@@ -64,7 +64,7 @@ fun SongItem(
         }
         Spacer(modifier = Modifier.height(Sizes.SMALL))
         Text(
-            text = song.price,
+            text = stringResource(id = R.string.price_format, song.price),
             color = BaseplateTheme.colors.textPrimary,
             style = BaseplateTheme.typography.bodyBold
         )
@@ -94,8 +94,10 @@ fun SongCardPreview() {
             id = "",
             title = "What it is to Burn",
             artistName = "Finch",
-            description = "Lorem ipsum",
-            price = "$100.00",
+            artistUrl = "",
+            longDescription = "Lorem ipsum",
+            shortDescription = "Lorem ipsum",
+            price = 100.00,
             thumbnail = "",
             videoUrl = ""
         )

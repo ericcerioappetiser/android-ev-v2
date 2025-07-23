@@ -99,8 +99,21 @@ fun ExploreScreenPreview() {
                 id = "",
                 title = "What it is to Burn",
                 artistName = "Finch",
-                description = "Lorem ipsum",
-                price = "$100.00",
+                artistUrl = "",
+                longDescription = "Lorem ipsum",
+                shortDescription = "Lorem ipsum",
+                price = 100.00,
+                thumbnail = "",
+                videoUrl = ""
+            ),
+            SSong(
+                id = "",
+                title = "What it is to Burn",
+                artistName = "Finch",
+                artistUrl = "",
+                longDescription = "Lorem ipsum",
+                shortDescription = "Lorem ipsum",
+                price = 100.00,
                 thumbnail = "",
                 videoUrl = ""
             ),
@@ -108,17 +121,10 @@ fun ExploreScreenPreview() {
                 id = "",
                 title = "What it is to Burn",
                 artistName = "Finch",
-                description = "Lorem ipsum",
-                price = "$100.00",
-                thumbnail = "",
-                videoUrl = ""
-            ),
-            Song(
-                id = "",
-                title = "What it is to Burn",
-                artistName = "Finch",
-                description = "Lorem ipsum",
-                price = "$100.00",
+                artistUrl = "",
+                longDescription = "Lorem ipsum",
+                shortDescription = "Lorem ipsum",
+                price = 100.00,
                 thumbnail = "",
                 videoUrl = ""
             )
