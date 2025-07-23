@@ -56,7 +56,7 @@ fun SongItem(
             FavoriteIcon(
                 modifier = Modifier
                     .align(Alignment.TopEnd)
-                    .padding(Paddings.MICRO)
+                    .padding(Paddings.SMALL)
                     .size(Sizes.XXX_LARGE),
                 song = song,
                 onFavoriteClick = onFavoriteClick

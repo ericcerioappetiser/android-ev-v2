@@ -3,4 +3,8 @@
     <string name="unfavorite">Unfavorite</string>
     <string name="favorite">Favorite</string>
     <string name="cover">%1$s cover</string>
+    <string name="explore">Explore</string>
+    <string name="favorites">Favorites</string>
+    <string name="profile">Profile</string>
+    <string name="search">Search</string>
 </resources>
