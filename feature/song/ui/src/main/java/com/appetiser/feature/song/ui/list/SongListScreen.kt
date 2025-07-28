@@ -22,36 +22,51 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.appetiser.core.common.compose.components.BaseplateSearchBar
 import com.appetiser.core.common.compose.dimensions.Margins
 import com.appetiser.core.common.compose.dimensions.Paddings
 import com.appetiser.core.common.compose.dimensions.Sizes
 import com.appetiser.core.common.compose.ui.BaseplateTheme
+import com.appetiser.core.common.compose.utils.ConsumableSideEffect
+import com.appetiser.core.common.compose.utils.collectAsState
 import com.appetiser.feature.song.domain.models.Song
 import com.appetiser.feature.song.ui.R
-import com.appetiser.feature.song.ui.components.BottomNavBar
-import com.appetiser.feature.song.ui.components.BottomTab
 import com.appetiser.feature.song.ui.components.SongItem
 
 @Composable
-fun ExploreScreen(
-    songs: List<Song>,
-    onSearch: (String) -> Unit,
+fun SongListScreen(
+    viewModel: SongListViewModel = hiltViewModel(),
+    onNavigateToSongDetails: (String) -> Unit
+) {
+    val state by viewModel.collectAsState()
+    SongListScreen(
+        state,
+        toNavigateSongDetails = { viewModel.action(SongListViewModel.ActionState.ClickSongItem(it)) },
+        onToggleFavorite = { viewModel.action(SongListViewModel.ActionState.ToggleFavorite(it)) }
+    )
+
+    ConsumableSideEffect(state.onNavigateTo) {
+        when (it) {
+            SongListViewModel.NavigateDestination.SONG_DETAILS -> onNavigateToSongDetails(state.clickSongItem.orEmpty())
+        }
+    }
+}
+
+@Composable
+fun SongListScreen(
+    state: SongListViewModel.SongListViewState,
+    toNavigateSongDetails: (String) -> Unit,
     onToggleFavorite: (Song) -> Unit
 ) {
     val (searchValue, setSearchValue) = remember { mutableStateOf("") }
-    var selectedTab by remember { mutableStateOf(BottomTab.Explore) }
 
     Scaffold(
-        containerColor = BaseplateTheme.colors.surfaceBackground,
-        bottomBar = {
-            BottomNavBar(selectedTab) {
-            }
-        }
-    ) { padding ->
+        modifier = Modifier.fillMaxSize()
+    ) { paddings ->
         Column(
             modifier = Modifier
-                .padding(padding)
+                .padding(paddings)
                 .padding(horizontal = Paddings.LARGE)
                 .background(BaseplateTheme.colors.surfaceBackground),
         ) {
@@ -79,7 +94,7 @@ fun ExploreScreen(
                 verticalArrangement = Arrangement.spacedBy(Margins.SMALL),
                 horizontalArrangement = Arrangement.spacedBy(Margins.MICRO)
             ) {
-                items(songs) { song ->
+                items(state.songs) { song ->
                     SongItem(
                         song = song,
                         onFavoriteClick = { onToggleFavorite(song) }
@@ -93,40 +108,42 @@ fun ExploreScreen(
 @Preview
 @Composable
 fun ExploreScreenPreview() {
-    ExploreScreen(
-        listOf(
-            Song(
-                id = "",
-                title = "What it is to Burn",
-                artistName = "Finch",
-                artistUrl = "",
-                longDescription = "Lorem ipsum",
-                shortDescription = "Lorem ipsum",
-                price = 100.00,
-                thumbnail = "",
-                videoUrl = ""
-            ),
-            SSong(
-                id = "",
-                title = "What it is to Burn",
-                artistName = "Finch",
-                artistUrl = "",
-                longDescription = "Lorem ipsum",
-                shortDescription = "Lorem ipsum",
-                price = 100.00,
-                thumbnail = "",
-                videoUrl = ""
-            ),
-            Song(
-                id = "",
-                title = "What it is to Burn",
-                artistName = "Finch",
-                artistUrl = "",
-                longDescription = "Lorem ipsum",
-                shortDescription = "Lorem ipsum",
-                price = 100.00,
-                thumbnail = "",
-                videoUrl = ""
+    SongListScreen(
+        state = SongListViewModel.SongListViewState(
+            songs = listOf(
+                Song(
+                    id = 0,
+                    title = "What it is to Burn",
+                    artistName = "Finch",
+                    artistUrl = "",
+                    longDescription = "Lorem ipsum",
+                    shortDescription = "Lorem ipsum",
+                    price = 100.00,
+                    thumbnail = "",
+                    videoUrl = ""
+                ),
+                Song(
+                    id = 1,
+                    title = "What it is to Burn",
+                    artistName = "Finch",
+                    artistUrl = "",
+                    longDescription = "Lorem ipsum",
+                    shortDescription = "Lorem ipsum",
+                    price = 100.00,
+                    thumbnail = "",
+                    videoUrl = ""
+                ),
+                Song(
+                    id = 2,
+                    title = "What it is to Burn",
+                    artistName = "Finch",
+                    artistUrl = "",
+                    longDescription = "Lorem ipsum",
+                    shortDescription = "Lorem ipsum",
+                    price = 100.00,
+                    thumbnail = "",
+                    videoUrl = ""
+                )
             )
         ),
         {}

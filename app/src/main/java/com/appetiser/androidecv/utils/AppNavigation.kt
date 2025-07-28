@@ -18,6 +18,7 @@ import com.appetiser.feature.auth.ui.loginDestination
 import com.appetiser.feature.auth.ui.loginPhoneDestination
 import com.appetiser.feature.auth.ui.signUpViaEmailDestination
 import com.appetiser.feature.auth.ui.verifyOtpDestination
+import com.appetiser.feature.song.ui.songDestination
 import com.appetiser.feature.walkthrough.ui.WalkthroughRoute
 import com.appetiser.feature.walkthrough.ui.walkthroughDestination
 import com.appetiser.onboarding.ui.InputBirthdayRoute
@@ -41,6 +42,8 @@ fun RootNavigation(navController: NavHostController) {
         startDestination = MainRoute
     ) {
         // Project specific
+
+        songDestination(navController)
         mainDestination()
 
         // Walkthrough module

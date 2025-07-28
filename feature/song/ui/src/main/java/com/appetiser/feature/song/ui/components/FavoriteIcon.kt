@@ -53,7 +53,7 @@ fun FavoriteIconPreview() {
             .padding(Paddings.MICRO)
             .size(Sizes.XXX_LARGE),
         song = Song(
-            id = "",
+            id = 0,
             title = "What it is to Burn",
             artistName = "Finch",
             artistUrl = "",

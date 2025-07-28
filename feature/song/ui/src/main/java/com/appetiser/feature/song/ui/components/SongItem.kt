@@ -91,7 +91,7 @@ fun SongCardPreview() {
     SongItem(
         modifier = Modifier,
         Song(
-            id = "",
+            id = 0,
             title = "What it is to Burn",
             artistName = "Finch",
             artistUrl = "",
