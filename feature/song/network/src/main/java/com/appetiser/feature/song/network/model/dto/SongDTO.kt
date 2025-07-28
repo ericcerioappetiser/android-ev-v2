@@ -5,9 +5,9 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class SongDTO (
+data class SongDTO(
     @SerialName("track_id")
-    val id: String? = "",
+    val id: Int = 0,
     @SerialName("track_name")
     val title: String? = "",
     @SerialName("long_description")
@@ -20,7 +20,7 @@ data class SongDTO (
     val artistName: String? = "",
     @SerialName("artist_view_url")
     val artistUrl: String? = "",
-    @SerialName("artwork_url30")
+    @SerialName("artwork_url100")
     val thumbnail: String? = "",
     @SerialName("preview_url")
     val videoUrl: String? = "",
@@ -30,7 +30,7 @@ data class SongDTO (
 internal fun SongDTO.toDomain(): Song {
     return with(this) {
         Song(
-            id = this.id.orEmpty(),
+            id = this.id,
             title = this.title.orEmpty(),
             longDescription = this.longDescription.orEmpty(),
             shortDescription = this.shortDescription.orEmpty(),

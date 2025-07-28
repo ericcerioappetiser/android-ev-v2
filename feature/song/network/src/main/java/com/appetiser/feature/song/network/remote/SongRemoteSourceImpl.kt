@@ -7,9 +7,10 @@ import com.appetiser.feature.song.network.model.dto.toDomain
 import com.appetiser.feature.song.network.model.payload.SongPayload
 import javax.inject.Inject
 
-class SongRemoteSourceImpl @Inject constructor(
+internal class SongRemoteSourceImpl @Inject constructor(
     val songApiServices: SongApiServices
-): BaseRemoteSource(), SongRemoteSource{
+) : BaseRemoteSource(),
+    SongRemoteSource {
 
     override suspend fun getSongs(
         token: String,
