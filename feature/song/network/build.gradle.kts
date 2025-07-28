@@ -46,6 +46,9 @@ dependencies {
 
     implementation(projects.core.network)
     implementation(projects.feature.song.domain)
+
+    implementation(libs.androidx.compose.bom)
+    implementation(libs.androidx.compose.runtime)
     // Retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit.kotlinx.serialization)
@@ -76,6 +79,7 @@ dependencies {
     androidTestImplementation(testLibs.androidx.test.runner)
     androidTestImplementation(testLibs.androidx.espresso)
     androidTestImplementation(testLibs.coroutines.test)
+
 }
 
 ksp {
