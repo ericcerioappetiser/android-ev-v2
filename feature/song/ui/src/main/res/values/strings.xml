@@ -9,4 +9,8 @@
     <string name="search">Search</string>
     <string name="price_format">$%.2f</string>
     <string name="no_songs_found">No Songs Found</string>
+    <string name="description">Description</string>
+    <string name="video">Video</string>
+    <string name="play">Play</string>
+    <string name="back">Back</string>
 </resources>
