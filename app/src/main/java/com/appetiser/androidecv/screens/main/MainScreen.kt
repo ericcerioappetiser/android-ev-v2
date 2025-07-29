@@ -48,6 +48,9 @@ import com.appetiser.feature.report.ui.ReportAProblemRoute
 import com.appetiser.feature.report.ui.reportAProblemDestination
 import com.appetiser.feature.song.ui.SongDetailRoute
 import com.appetiser.feature.song.ui.SongListRoute
+import com.appetiser.feature.song.ui.SongRoute
+import com.appetiser.feature.song.ui.songDestination
+import com.appetiser.feature.song.ui.songDetailDestination
 import com.appetiser.feature.song.ui.songListDestination
 import com.appetiser.feature.song.ui.R as songR
 
@@ -169,7 +172,7 @@ fun MainScreen(
                 .consumeWindowInsets(innerPadding)
                 .padding(innerPadding),
             navController = navController,
-            startDestination = SongListRoute,
+            startDestination = SongRoute,
         ) {
             homeDestination(
                 onHome = {
@@ -185,9 +188,14 @@ fun MainScreen(
                 }
             )
 
+            songDestination(navController)
             songListDestination {
-                navController.navigate(ChatRoute)
+                SongDetailRoute(it)
             }
+            songDetailDestination(
+                onBackClick = { navController.popBackStack() }
+            )
+
             chatDestination()
             newDestination(navController)
             notificationDestination()

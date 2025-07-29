@@ -46,18 +46,18 @@ import timber.log.Timber
 @Composable
 fun SongListScreen(
     viewModel: SongListViewModel = hiltViewModel(),
-    onNavigateToSongDetails: (String) -> Unit
+    onNavigateToSongDetails: (Int) -> Unit
 ) {
     val state by viewModel.collectAsState()
     SongListScreen(
         state,
-        toNavigateSongDetails = { viewModel.action(SongListViewModel.ActionState.ClickSongItem(it)) },
+        toNavigateSongDetails = { viewModel.action(SongListViewModel.ActionState.ClickSongItem(it.id)) },
         onToggleFavorite = { viewModel.action(SongListViewModel.ActionState.ToggleFavorite(it)) }
     )
 
     ConsumableSideEffect(state.onNavigateTo) {
         when (it) {
-            SongListViewModel.NavigateDestination.SONG_DETAILS -> onNavigateToSongDetails(state.clickSongItem.orEmpty())
+            SongListViewModel.NavigateDestination.SONG_DETAILS -> onNavigateToSongDetails(state.clickSongId ?: 0)
         }
     }
 }
@@ -66,7 +66,7 @@ fun SongListScreen(
 @Composable
 fun SongListScreen(
     state: SongListViewModel.ViewState,
-    toNavigateSongDetails: (String) -> Unit,
+    toNavigateSongDetails: (Song) -> Unit,
     onToggleFavorite: (Song) -> Unit
 ) {
     val lazyPagingItems = state.songs.collectAsLazyPagingItems()
@@ -140,7 +140,8 @@ fun SongListScreen(
                             song?.let {
                                 SongItem(
                                     song = it,
-                                    onFavoriteClick = { onToggleFavorite(it) }
+                                    onFavoriteClick = { onToggleFavorite(it) },
+                                    onClick = { toNavigateSongDetails(it) }
                                 )
                             }
                         }

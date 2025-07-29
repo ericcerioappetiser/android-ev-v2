@@ -43,7 +43,6 @@ fun RootNavigation(navController: NavHostController) {
     ) {
         // Project specific
 
-        songDestination(navController)
         mainDestination()
 
         // Walkthrough module

@@ -11,6 +11,13 @@ import kotlinx.serialization.Serializable
 @Serializable
 data object SongRoute
 
+@Serializable
+data object SongListRoute
+
+@Serializable
+data class SongDetailRoute(val id: Int)
+
+
 fun NavGraphBuilder.songDestination(
     navController: NavController
 ) {
@@ -25,11 +32,8 @@ fun NavGraphBuilder.songDestination(
     }
 }
 
-@Serializable
-data object SongListRoute
-
 fun NavGraphBuilder.songListDestination(
-    toSongDetail: (String) -> Unit
+    toSongDetail: (Int) -> Unit
 ) {
     composable<SongListRoute> {
         SongListScreen {
@@ -38,11 +42,12 @@ fun NavGraphBuilder.songListDestination(
     }
 }
 
-@Serializable
-data class SongDetailRoute(val id: String)
-
-fun NavGraphBuilder.songDetailDestination() {
+fun NavGraphBuilder.songDetailDestination(
+    onBackClick: () -> Unit
+) {
     composable<SongDetailRoute> {
-        SongDetailScreen()
+        SongDetailScreen(
+            onBackClick = onBackClick
+        )
     }
 }

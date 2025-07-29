@@ -1,6 +1,7 @@
 package com.appetiser.feature.song.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -31,12 +32,14 @@ import com.appetiser.feature.song.ui.R
 fun SongItem(
     modifier: Modifier = Modifier,
     song: Song,
-    onFavoriteClick: () -> Unit = {}
+    onFavoriteClick: () -> Unit = {},
+    onClick: (Song) -> Unit = {}
 ) {
     Column(
         modifier = modifier
             .fillMaxWidth()
             .padding(Paddings.SMALL)
+            .clickable(onClick = { onClick(song) })
     ) {
         Box(
             modifier = Modifier

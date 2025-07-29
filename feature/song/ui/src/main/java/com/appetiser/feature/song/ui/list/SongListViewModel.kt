@@ -39,7 +39,7 @@ class SongListViewModel @Inject constructor(
         get() = ViewState()
 
     sealed interface ActionState {
-        data class ClickSongItem(val id: String) : ActionState
+        data class ClickSongItem(val songId: Int) : ActionState
         data class OnSearch(val searchKey: String) : ActionState
         data class ToggleFavorite(val song: Song) : ActionState
     }
@@ -55,13 +55,13 @@ class SongListViewModel @Inject constructor(
         val filter: SongPayload = SongPayload(),
         val error: ConsumableError? = null,
         val onNavigateTo: Consumable<NavigateDestination>? = null,
-        val clickSongItem: String? = null,
+        val clickSongId: Int? = null,
     )
 
     private suspend fun handleAction(action: ActionState) {
         when (action) {
             is ActionState.ClickSongItem -> {
-                modifyState { copy(clickSongItem = action.id) }
+                modifyState { copy(clickSongId = action.songId) }
                 modifyState { copy(onNavigateTo = NavigateDestination.SONG_DETAILS.asConsumable()) }
             }
 
