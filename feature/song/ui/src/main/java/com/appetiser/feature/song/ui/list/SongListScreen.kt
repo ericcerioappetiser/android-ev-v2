@@ -127,6 +127,7 @@ fun ExploreScreenPreview() {
                             shortDescription = "Lorem ipsum",
                             price = 100.00,
                             thumbnail = "",
+                            genre = "",
                             videoUrl = ""
                         ),
                         Song(
@@ -138,6 +139,7 @@ fun ExploreScreenPreview() {
                             shortDescription = "Lorem ipsum",
                             price = 100.00,
                             thumbnail = "",
+                            genre = "",
                             videoUrl = ""
                         ),
                         Song(
@@ -149,6 +151,7 @@ fun ExploreScreenPreview() {
                             shortDescription = "Lorem ipsum",
                             price = 100.00,
                             thumbnail = "",
+                            genre = "",
                             videoUrl = ""
                         )
                     )

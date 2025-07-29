@@ -1,6 +1,7 @@
 package com.appetiser.feature.song.ui.components
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,6 +29,7 @@ fun SongDetailsContent(
     title: String,
     artist: String,
     description: String,
+    genre: String,
     imageUrl: String
 ) {
     Column(
@@ -59,11 +61,26 @@ fun SongDetailsContent(
             style = BaseplateTheme.typography.bodyRegular,
             color = BaseplateTheme.colors.textPrimary
         )
-        Text(
-            text = artist,
-            style = BaseplateTheme.typography.bodyRegular,
-            color = BaseplateTheme.colors.textTertiary
-        )
+        Row {
+            Text(
+                text = artist,
+                style = BaseplateTheme.typography.bodyRegular,
+                color = BaseplateTheme.colors.textTertiary
+            )
+
+            Text(
+                text = stringResource(R.string.dash),
+                style = BaseplateTheme.typography.bodyRegular,
+                color = BaseplateTheme.colors.textTertiary
+            )
+
+            Text(
+                text = genre,
+                style = BaseplateTheme.typography.bodyRegular,
+                color = BaseplateTheme.colors.textTertiary
+            )
+        }
+
 
         HorizontalDivider(
             modifier = Modifier.padding(vertical = Paddings.LARGE),
@@ -94,6 +111,7 @@ fun SongDetailsPreview() {
         "Tews",
         "ERR",
         "Lorem Ipsum this is a long description",
-        "test"
+        "test",
+        imageUrl = ""
     )
 }

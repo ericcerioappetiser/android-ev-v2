@@ -79,6 +79,7 @@ internal fun SongDetailScreen(
             title = song?.title.orEmpty(),
             artist = song?.artistName.orEmpty(),
             description = song?.longDescription.orEmpty(),
+            genre = song?.genre.orEmpty(),
             imageUrl = song?.thumbnail.orEmpty(),
         )
     }
@@ -98,6 +99,7 @@ fun SongDetailScreenPreview() {
                 shortDescription = "Lorem ipsum",
                 price = 100.00,
                 thumbnail = "",
+                genre = "",
                 videoUrl = ""
             )
         ),
