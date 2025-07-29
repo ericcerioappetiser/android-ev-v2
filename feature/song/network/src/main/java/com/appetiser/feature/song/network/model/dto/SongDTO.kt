@@ -27,7 +27,7 @@ data class SongDTO(
     val isFavorite: Boolean? = false
 )
 
-internal fun SongDTO.toDomain(): Song {
+fun SongDTO.toDomain(): Song {
     return with(this) {
         Song(
             id = this.id,
@@ -42,3 +42,4 @@ internal fun SongDTO.toDomain(): Song {
         )
     }
 }
+

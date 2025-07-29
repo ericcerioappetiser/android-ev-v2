@@ -57,6 +57,9 @@ dependencies {
     implementation(projects.core.commonAndroid)
     implementation(libs.androidx.activity.compose)
 
+    implementation(libs.androidx.paging.runtime)
+    implementation(libs.androidx.paging.compose)
+
     implementation(platform(libs.androidx.compose.bom))
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)

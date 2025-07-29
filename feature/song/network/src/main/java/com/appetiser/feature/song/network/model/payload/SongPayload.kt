@@ -3,7 +3,7 @@ package com.appetiser.feature.song.network.model.payload
 data class SongPayload(
     private val search: String = "star",
     private val isFavorite: Int? = 1,
-    private val limit: Int? = 50,
+    private val limit: Int? = 10,
     private val page: Int? = 1
 ) {
     fun toQueryMap(): Map<String, Any> {
