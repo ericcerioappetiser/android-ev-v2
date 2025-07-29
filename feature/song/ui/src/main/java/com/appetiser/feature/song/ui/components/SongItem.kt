@@ -1,6 +1,7 @@
 package com.appetiser.feature.song.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -31,12 +32,14 @@ import com.appetiser.feature.song.ui.R
 fun SongItem(
     modifier: Modifier = Modifier,
     song: Song,
-    onFavoriteClick: () -> Unit = {}
+    onFavoriteClick: () -> Unit = {},
+    onClick: (Song) -> Unit = {}
 ) {
     Column(
         modifier = modifier
             .fillMaxWidth()
             .padding(Paddings.SMALL)
+            .clickable(onClick = { onClick(song) })
     ) {
         Box(
             modifier = Modifier
@@ -56,7 +59,7 @@ fun SongItem(
             FavoriteIcon(
                 modifier = Modifier
                     .align(Alignment.TopEnd)
-                    .padding(Paddings.MICRO)
+                    .padding(Paddings.SMALL)
                     .size(Sizes.XXX_LARGE),
                 song = song,
                 onFavoriteClick = onFavoriteClick
@@ -64,7 +67,7 @@ fun SongItem(
         }
         Spacer(modifier = Modifier.height(Sizes.SMALL))
         Text(
-            text = song.price,
+            text = stringResource(id = R.string.price_format, song.price),
             color = BaseplateTheme.colors.textPrimary,
             style = BaseplateTheme.typography.bodyBold
         )
@@ -91,11 +94,13 @@ fun SongCardPreview() {
     SongItem(
         modifier = Modifier,
         Song(
-            id = "",
+            id = 0,
             title = "What it is to Burn",
             artistName = "Finch",
-            description = "Lorem ipsum",
-            price = "$100.00",
+            artistUrl = "",
+            longDescription = "Lorem ipsum",
+            shortDescription = "Lorem ipsum",
+            price = 100.00,
             thumbnail = "",
             videoUrl = ""
         )

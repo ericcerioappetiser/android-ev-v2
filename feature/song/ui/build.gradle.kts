@@ -49,21 +49,22 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+
     implementation(libs.kotlinx.serialization.json)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+
     implementation(projects.core.commonCompose)
     implementation(libs.androidx.compose.material3)
     implementation(projects.core.commonAndroid)
     implementation(libs.androidx.activity.compose)
+
+    implementation(libs.androidx.paging.runtime)
+    implementation(libs.androidx.paging.compose)
+
     implementation(platform(libs.androidx.compose.bom))
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
+
+
     ksp(libs.hilt.compiler)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)

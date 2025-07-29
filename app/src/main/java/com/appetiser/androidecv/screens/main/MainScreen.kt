@@ -38,7 +38,6 @@ import com.appetiser.androidecv.screens.main.home.NestedRoute
 import com.appetiser.androidecv.screens.main.home.homeDestination
 import com.appetiser.androidecv.screens.main.newoption.NewDialog
 import com.appetiser.androidecv.screens.main.newoption.newDestination
-import com.appetiser.androidecv.screens.main.notification.NotificationRoute
 import com.appetiser.androidecv.screens.main.notification.notificationDestination
 import com.appetiser.core.common.compose.R
 import com.appetiser.core.common.compose.ui.BaseplateTheme
@@ -47,6 +46,13 @@ import com.appetiser.feature.profile.ui.profileGraph
 import com.appetiser.feature.profile.ui.helpCentreDestination
 import com.appetiser.feature.report.ui.ReportAProblemRoute
 import com.appetiser.feature.report.ui.reportAProblemDestination
+import com.appetiser.feature.song.ui.SongDetailRoute
+import com.appetiser.feature.song.ui.SongListRoute
+import com.appetiser.feature.song.ui.SongRoute
+import com.appetiser.feature.song.ui.songDestination
+import com.appetiser.feature.song.ui.songDetailDestination
+import com.appetiser.feature.song.ui.songListDestination
+import com.appetiser.feature.song.ui.R as SongR
 
 data class MainScreenTopLevelRoute<T : Any>(val name: String, val route: T?, val icon: Painter)
 
@@ -56,24 +62,15 @@ fun MainScreen(
 ) {
     val topLevelRoutes = listOf(
         MainScreenTopLevelRoute(
-            stringResource(R.string.home),
-            HomeRoute,
+            stringResource(SongR.string.explore),
+            SongListRoute,
             painterResource(R.drawable.ic_home)
         ),
+
         MainScreenTopLevelRoute(
-            stringResource(R.string.chat),
-            ChatRoute,
-            painterResource(R.drawable.ic_chat)
-        ),
-        MainScreenTopLevelRoute(
-            stringResource(R.string.new_string),
-            NewDialog,
-            painterResource(R.drawable.ic_add)
-        ),
-        MainScreenTopLevelRoute(
-            stringResource(R.string.notifications),
-            NotificationRoute,
-            painterResource(R.drawable.ic_bell)
+            stringResource(SongR.string.favorites),
+            null,
+            painterResource(SongR.drawable.ic_heart)
         ),
 
         MainScreenTopLevelRoute(
@@ -175,7 +172,7 @@ fun MainScreen(
                 .consumeWindowInsets(innerPadding)
                 .padding(innerPadding),
             navController = navController,
-            startDestination = HomeRoute,
+            startDestination = SongRoute,
         ) {
             homeDestination(
                 onHome = {
@@ -190,6 +187,15 @@ fun MainScreen(
                     navController.navigate(NestedRoute)
                 }
             )
+
+            songDestination(navController)
+            songListDestination {
+                SongDetailRoute(it)
+            }
+            songDetailDestination(
+                onBackClick = { navController.popBackStack() }
+            )
+
             chatDestination()
             newDestination(navController)
             notificationDestination()

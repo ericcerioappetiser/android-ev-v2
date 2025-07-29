@@ -128,7 +128,7 @@ dependencies {
     implementation(projects.feature.walkthrough.ui)
     implementation(projects.feature.profile.ui)
     implementation(projects.feature.report.ui)
-
+    implementation(projects.feature.song.ui)
     // Dagger-Hilt
     // https://developer.android.com/training/dependency-injection/hilt-android
     ksp(libs.hilt.compiler)
