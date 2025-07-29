@@ -12,8 +12,8 @@ import com.appetiser.core.common.android.util.launchWithTimber
 import com.appetiser.feature.song.data.repository.SongRepository
 import com.appetiser.feature.song.domain.models.Song
 import com.appetiser.feature.song.network.model.payload.SongPayload
-import com.appetiser.feature.song.ui.Constants.DEFAULT_LIMIT
-import com.appetiser.feature.song.ui.Constants.MINIMUM_SEARCH_LENGTH
+import com.appetiser.feature.song.domain.models.Constants.DEFAULT_LIMIT
+import com.appetiser.feature.song.domain.models.Constants.MINIMUM_SEARCH_LENGTH
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine

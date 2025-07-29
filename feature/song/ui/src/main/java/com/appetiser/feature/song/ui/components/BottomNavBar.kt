@@ -23,7 +23,7 @@ fun BottomNavBar(
 ) {
     Column {
         HorizontalDivider(
-            Modifier,
+            modifier = Modifier,
             thickness = 1.dp,
             color = Color.LightGray
         )

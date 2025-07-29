@@ -52,7 +52,7 @@ import com.appetiser.feature.song.ui.SongRoute
 import com.appetiser.feature.song.ui.songDestination
 import com.appetiser.feature.song.ui.songDetailDestination
 import com.appetiser.feature.song.ui.songListDestination
-import com.appetiser.feature.song.ui.R as songR
+import com.appetiser.feature.song.ui.R as SongR
 
 data class MainScreenTopLevelRoute<T : Any>(val name: String, val route: T?, val icon: Painter)
 
@@ -62,15 +62,15 @@ fun MainScreen(
 ) {
     val topLevelRoutes = listOf(
         MainScreenTopLevelRoute(
-            stringResource(songR.string.explore),
+            stringResource(SongR.string.explore),
             SongListRoute,
             painterResource(R.drawable.ic_home)
         ),
 
         MainScreenTopLevelRoute(
-            stringResource(songR.string.favorites),
+            stringResource(SongR.string.favorites),
             null,
-            painterResource(songR.drawable.ic_heart)
+            painterResource(SongR.drawable.ic_heart)
         ),
 
         MainScreenTopLevelRoute(

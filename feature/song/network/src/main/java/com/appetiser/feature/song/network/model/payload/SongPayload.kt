@@ -1,10 +1,13 @@
 package com.appetiser.feature.song.network.model.payload
 
+import com.appetiser.feature.song.domain.models.Constants.DEFAULT_LIMIT
+import com.appetiser.feature.song.domain.models.Constants.DEFAULT_PAGE
+
 data class SongPayload(
     private val search: String = "star",
     private val isFavorite: Int? = 1,
-    private val limit: Int? = 10,
-    private val page: Int? = 1
+    private val limit: Int? = DEFAULT_LIMIT,
+    private val page: Int? = DEFAULT_PAGE
 ) {
     fun toQueryMap(): Map<String, Any> {
         return buildMap {

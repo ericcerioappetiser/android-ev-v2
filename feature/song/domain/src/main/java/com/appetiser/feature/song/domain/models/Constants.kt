@@ -1,4 +1,4 @@
-package com.appetiser.feature.song.ui
+package com.appetiser.feature.song.domain.models
 
 object Constants {
     const val DEFAULT_SEARCH_KEY = "star"
