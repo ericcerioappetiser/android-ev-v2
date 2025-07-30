@@ -42,7 +42,7 @@ fun SongDetailScreen(
 @Composable
 internal fun SongDetailScreen(
     state: SongDetailViewModel.ViewState,
-    onBackClick: () -> Unit = {},
+    onBackClick: () -> Unit,
     onFavoriteClick: () -> Unit = {}
 ) {
     val song = state.song

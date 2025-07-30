@@ -32,7 +32,7 @@ fun FeaturedVideo(videoThumbnailUrl: String, title: String, onPlayClicked: () ->
             .padding(horizontal = Paddings.LARGE)
     ) {
         Text(
-            stringResource(R.string.video),
+            text = stringResource(R.string.video),
             style = BaseplateTheme.typography.subHeadSemiBold
         )
         Box(

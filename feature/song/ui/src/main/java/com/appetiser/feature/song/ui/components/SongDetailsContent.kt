@@ -32,6 +32,7 @@ fun SongDetailsContent(
     genre: String,
     imageUrl: String
 ) {
+    
     Column(
         modifier = Modifier
             .padding(Paddings.SMALL)

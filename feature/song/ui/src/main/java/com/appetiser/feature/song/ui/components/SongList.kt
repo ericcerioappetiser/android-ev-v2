@@ -24,10 +24,10 @@ import com.appetiser.feature.song.ui.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SongList(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     lazyPagingItems: LazyPagingItems<Song>,
     pagingState: PagingState,
-    toNavigateSongDetails: (Song) -> Unit,
+    onSongClicked: (Song) -> Unit,
     onToggleFavorite: (Song) -> Unit
 ) {
     PullToRefreshBox(
@@ -65,7 +65,7 @@ fun SongList(
                         SongItem(
                             song = it,
                             onFavoriteClick = { onToggleFavorite(it) },
-                            onClick = { toNavigateSongDetails(it) }
+                            onClick = { onSongClicked(it) }
                         )
                     }
                 }

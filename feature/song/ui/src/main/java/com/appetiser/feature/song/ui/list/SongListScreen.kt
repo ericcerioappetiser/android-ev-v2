@@ -100,10 +100,9 @@ fun SongListScreen(
             Spacer(modifier = Modifier.height(Sizes.MEDIUM))
 
             SongList(
-                modifier = Modifier,
                 lazyPagingItems = lazyPagingItems,
                 pagingState = pagingState,
-                toNavigateSongDetails = toNavigateSongDetails,
+                onSongClicked = toNavigateSongDetails,
                 onToggleFavorite = onToggleFavorite
             )
         }
