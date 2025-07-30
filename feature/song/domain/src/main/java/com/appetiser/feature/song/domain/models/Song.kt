@@ -10,5 +10,6 @@ data class Song(
     val artistUrl: String,
     val thumbnail: String,
     val videoUrl: String,
+    val genre: String,
     val isFavorite: Boolean = false
 )

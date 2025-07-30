@@ -102,6 +102,7 @@ fun SongCardPreview() {
             shortDescription = "Lorem ipsum",
             price = 100.00,
             thumbnail = "",
+            genre = "",
             videoUrl = ""
         )
     ) {

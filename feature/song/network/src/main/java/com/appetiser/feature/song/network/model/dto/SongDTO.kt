@@ -24,7 +24,11 @@ data class SongDTO(
     val thumbnail: String? = "",
     @SerialName("preview_url")
     val videoUrl: String? = "",
+    @SerialName("primary_genre_name")
+    val genre: String? = "",
+    @SerialName("is_favorite")
     val isFavorite: Boolean? = false
+
 )
 
 fun SongDTO.toDomain(): Song {
@@ -38,6 +42,7 @@ fun SongDTO.toDomain(): Song {
             artistName = this.artistName.orEmpty(),
             artistUrl = this.artistUrl.orEmpty(),
             thumbnail = this.thumbnail.orEmpty(),
+            genre = this.genre.orEmpty(),
             videoUrl = this.videoUrl.orEmpty()
         )
     }
